@@ -1,22 +1,113 @@
-# Levye Forge
+<a id="readme-top"></a>
 
-**Levye Studio’s 3D game engine.**
+<!-- PROJECT SHIELDS -->
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![Apache License][license-shield]][license-url]
 
-Levye Forge is a C++ engine and editor for building 3D games, with OpenGL rendering, Jolt physics, an entity component system, and skeletal animation.
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/Levye-Studio/LevyeForge">
+    <img src="images/logo.png" alt="Levye Forge logo" width="80" height="80">
+  </a>
+
+  <h3 align="center">Levye Forge</h3>
+
+  <p align="center">
+    Levye Studio's 3D game engine, built with OpenGL, GLFW, and Jolt Physics.
+    <br />
+    <a href="#usage-api"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="#playable-scene-power-the-beacon">View Demo</a>
+    &middot;
+    <a href="https://github.com/Levye-Studio/LevyeForge/issues/new?labels=bug">Report Bug</a>
+    &middot;
+    <a href="https://github.com/Levye-Studio/LevyeForge/issues/new?labels=enhancement">Request Feature</a>
+  </p>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#usage-api">Usage API</a>
+      <ul>
+        <li><a href="#scene-hierarchy">Scene Hierarchy</a></li>
+        <li><a href="#physics-in-the-editor">Physics</a></li>
+        <li><a href="#properties-and-animation">Properties and Animation</a></li>
+        <li><a href="#native-c-scripts">Native C++ Scripts</a></li>
+        <li><a href="#lua-scripts">Lua Scripts</a></li>
+        <li><a href="#playable-scene-power-the-beacon">Power the Beacon</a></li>
+      </ul>
+    </li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+</details>
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
+
+[![Levye Forge editor screenshot][product-screenshot]](images/screenshot.png)
+
+Levye Forge is Levye Studio's C++ engine and editor for building 3D games. It includes OpenGL rendering, Jolt physics, an entity component system, skeletal animation, native C++ and Lua scripting, and the playable **Power the Beacon** scene.
 
 The editor is **Levye Forge Editor**, built as `ForgeEditor`. The engine library and public header are `LevyeForge` and `LevyeForge.h`.
 
-## Scene hierarchy
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-Drag an entity onto another entity in **Scene Hierarchy** to make it a child. Drop it on **Scene Root** to unparent it. Both actions preserve its world position, rotation, and scale. Expand the arrow beside a parent to see its children.
+### Built With
 
-Right-click an entity for **Create Child**, **Move to Scene Root**, **Duplicate**, or **Delete Entity and Children**. Duplicating includes the entire subtree with new entity IDs; deleting a parent also deletes its descendants and physics bodies. Parent links persist when saving/loading scenes and entering Play mode.
+- [![C++][C++-shield]][C++-url]
+- [CMake](https://cmake.org/)
+- [OpenGL](https://www.opengl.org/) and [GLFW](https://www.glfw.org/)
+- [Jolt Physics](https://github.com/jrouwe/JoltPhysics)
+- [Dear ImGui](https://github.com/ocornut/imgui) and [EnTT](https://github.com/skypjack/entt)
+- [Assimp](https://github.com/assimp/assimp) and [ozz-animation](https://github.com/guillaumeblanc/ozz-animation)
+- [Lua](https://www.lua.org/) and [miniaudio](https://miniaud.io/)
 
-Child Transform fields (and Lua transform accessors) are relative to the parent. Moving a parent moves its descendants; viewport gizmos operate on the child's world pose. Reparenting rejects cycles and transforms that cannot be represented by position/rotation/scale, such as shear from rotated, nonuniformly scaled parents. Use uniform parent scale for physics hierarchies.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Build and run
+<!-- GETTING STARTED -->
+## Getting Started
 
-Requirements: CMake, a C++17 compiler, and OpenGL 4.1 or later. Dependencies are included in `vendor/`.
+### Prerequisites
+
+- Git
+- CMake and a C++17 compiler
+- OpenGL 4.1 or later
+
+Dependencies are included in `vendor/`.
+
+### Installation
+
+Clone the repository:
+
+```sh
+git clone https://github.com/Levye-Studio/LevyeForge.git
+cd LevyeForge
+```
 
 Run these commands from the repository root on macOS or Linux:
 
@@ -35,7 +126,12 @@ Run.bat ForgeEditor
 
 The sample application is available through `./Run.sh Sandbox` or `Run.bat Sandbox`. Launch scripts use the Debug build when present, otherwise Release. For a Release build, use `Targets/Release` and `-DCMAKE_BUILD_TYPE=Release`, or `Win.bat Release` on Windows.
 
-## Repository layout
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- USAGE API -->
+## Usage API
+
+### Repository layout
 
 - `Engine/` — engine library, rendering, scene runtime, physics integration, and platform code.
 - `Editor/` — Forge Editor and its tools and resources.
@@ -46,7 +142,19 @@ The sample application is available through `./Run.sh Sandbox` or `Run.bat Sandb
 
 Applications include `<LevyeForge.h>` and link the `LevyeForge` CMake target. Engine types use the `LevyeForge` C++ namespace, for example `LevyeForge::Application`. Preprocessor macros use the `LF_` prefix, for example `LF_PLATFORM_WINDOWS`, `LF_CORE_ASSERT`, and `LF_PROFILE_FUNCTION`.
 
-## Physics in the editor
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+### Scene hierarchy
+
+Drag an entity onto another entity in **Scene Hierarchy** to make it a child. Drop it on **Scene Root** to unparent it. Both actions preserve its world position, rotation, and scale. Expand the arrow beside a parent to see its children.
+
+Right-click an entity for **Create Child**, **Move to Scene Root**, **Duplicate**, or **Delete Entity and Children**. Duplicating includes the entire subtree with new entity IDs; deleting a parent also deletes its descendants and physics bodies. Parent links persist when saving/loading scenes and entering Play mode.
+
+Child Transform fields (and Lua transform accessors) are relative to the parent. Moving a parent moves its descendants; viewport gizmos operate on the child's world pose. Reparenting rejects cycles and transforms that cannot be represented by position/rotation/scale, such as shear from rotated, nonuniformly scaled parents. Use uniform parent scale for physics hierarchies.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+### Physics in the editor
 
 Select an entity in Scene Hierarchy and use **Add Component → Rigid Body** plus **Box Collider** or **Sphere Collider**. Set moving objects to **Dynamic** and floors to **Static**, then press Play. The default playground includes a physical player body, floor, walls, and platforms.
 
@@ -54,7 +162,9 @@ Collider sizes are local to the entity and include its transform scale. Rotation
 
 Stop returns to the editor scene without keeping simulated positions. Existing `.UE` scenes with the older box/sphere component names are supported. The current integration supports box and sphere colliders; arbitrary mesh colliders and a general-purpose capsule character controller are not implemented. The playground uses a rotation-locked box body with ground probes.
 
-## Properties and animation
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+### Properties and animation
 
 The **Properties → Add Component** menu includes models, animators, sprites, lights, skyboxes, cameras, cubes, circles, rectangles, lines, UI images, buttons, text, native scripts, Lua scripts, and physics components. Asset fields accept typed paths or files dragged from the content browser. Component settings are included in scene save/load and duplication.
 
@@ -66,24 +176,21 @@ To animate a character:
 
 The default demo character plays its idle animation. Edit and Play modes use separate playback state. Animation tracks must match the model's joint names; the current renderer supports 100 deforming bones with four normalized influences per vertex; helper joints do not consume palette entries. Native script bindings and button callbacks are supplied by C++ code, not serialized executable code.
 
-## Origins and license
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-Levye Forge builds on [Urban Engine](https://github.com/Genesis-Grid-Lab/urban-engine), originally developed by Nesmy Point Du Jour and contributors.
-
-See [LICENSE](LICENSE) for the project’s license. Third-party dependencies and assets retain their respective licenses.
-
-
-## Component visualization
+### Component visualization
 
 Use **Camera → Show Camera Frustum** and **Box/Sphere Collider → Show Collider Wireframe** for per-entity previews. These settings save with the scene. Optional components have **... → Remove Component**; Transform is required.
 
-## Native C++ scripts
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+### Native C++ scripts
 
 Register compiled classes before loading scenes, then choose the class in **Native Script → Class**. The editor registers **Player Controller**, a WASD example that supports transform movement, kinematic movement, or a dynamic rigid body. It does not require a camera or a model. Native C++ source changes require rebuilding the application.
 
 ```cpp
 class Spin : public LevyeForge::ScriptableEntity {
-    void OnUpdate(Timestep dt) override {
+    void OnUpdate(LevyeForge::Timestep dt) override {
         GetComponent<LevyeForge::TransformComponent>().Rotation.y += float(dt);
     }
 };
@@ -92,7 +199,9 @@ LevyeForge::NativeScriptRegistry::Register<Spin>("Spin");
 
 Scripts receive `OnCreate`, `OnUpdate`, and `OnDestroy` during Play. `OnImGuiRender` displays custom controls in the selected script's Properties section. The registered class name and enabled state save with the scene. **Restart Script** creates a fresh runtime instance on the next update. Play copies and duplicated entities never share script instances. C++ exceptions are reported in Properties.
 
-## Lua scripts
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+### Lua scripts
 
 Lua 5.4.9 is bundled from [the official Lua source archive](https://www.lua.org/ftp/); no system Lua installation is needed. The [Lua 5.4 manual](https://www.lua.org/manual/5.4/) documents the language.
 
@@ -128,8 +237,9 @@ Each entity has a separate Lua state. Callbacks are optional and run only in Pla
 
 A callback instruction limit catches runaway Lua loops. Scripts use the standard Lua libraries and are intended for trusted project code.
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Playable scene: Power the Beacon
+### Playable scene: Power the Beacon
 
 The editor opens this playground by default. Press **Play**, then click the viewport to give it keyboard focus. **File → New Playground** creates a fresh copy. The editable scene is also available as `Resources/Scenes/PowerTheBeacon.UE`.
 
@@ -160,3 +270,74 @@ The controller looks up the named Player Body, Man, Playground Camera, Energy Ce
 Sound uses bundled [miniaudio 0.11.21](https://github.com/mackron/miniaudio/tree/0.11.21) and requires no external audio assets. If no output device is available, the game continues silently and the HUD indicates that.
 
 The playground hierarchy groups the environment, objectives, lighting, and player under **Power the Beacon**. **Man** is a child of **Player Body**. Walls, platforms, path markers, energy cells, and the beacon assembly each have their own groups.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- ROADMAP -->
+## Roadmap
+
+- [x] Editor with nested scene hierarchy and drag-and-drop parenting
+- [x] Box and sphere physics, skeletal animation, and native/Lua scripting
+- [x] Playable Power the Beacon scene
+- [ ] Mesh colliders and a capsule character controller
+- [ ] General physics contact events
+- [ ] Platform installers and game distribution packaging
+
+See the [open issues][issues-url] for proposed features and reported bugs.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- CONTRIBUTING -->
+## Contributing
+
+Open an issue to discuss a bug or feature, or submit a pull request with a focused change. Include steps to reproduce bugs and describe how you verified a fix.
+
+1. Fork the project.
+2. Create a branch for your change.
+3. Build the editor and verify the affected behavior.
+4. Open a pull request against `main`.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- LICENSE -->
+## License
+
+Distributed under the Apache License 2.0. See [LICENSE](LICENSE) for details. Third-party dependencies and assets retain their respective licenses.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- CONTACT -->
+## Contact
+
+[Levye Studio](https://github.com/Levye-Studio)
+
+Project: [LevyeForge](https://github.com/Levye-Studio/LevyeForge)
+
+For bugs and feature requests, use the [issue tracker][issues-url].
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- ACKNOWLEDGMENTS -->
+## Acknowledgments
+
+- [Urban Engine](https://github.com/Genesis-Grid-Lab/urban-engine), originally developed by Nesmy Point Du Jour and contributors
+- The maintainers of the dependencies included in `vendor/`
+- [Best-README-Template](https://github.com/othneildrew/Best-README-Template) for this README layout
+- [Shields.io](https://shields.io/) for the badges
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- MARKDOWN LINKS & IMAGES -->
+[contributors-shield]: https://img.shields.io/github/contributors/Levye-Studio/LevyeForge.svg?style=for-the-badge
+[contributors-url]: https://github.com/Levye-Studio/LevyeForge/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/Levye-Studio/LevyeForge.svg?style=for-the-badge
+[forks-url]: https://github.com/Levye-Studio/LevyeForge/forks
+[stars-shield]: https://img.shields.io/github/stars/Levye-Studio/LevyeForge.svg?style=for-the-badge
+[stars-url]: https://github.com/Levye-Studio/LevyeForge/stargazers
+[issues-shield]: https://img.shields.io/github/issues/Levye-Studio/LevyeForge.svg?style=for-the-badge
+[issues-url]: https://github.com/Levye-Studio/LevyeForge/issues
+[license-shield]: https://img.shields.io/github/license/Levye-Studio/LevyeForge.svg?style=for-the-badge
+[license-url]: https://github.com/Levye-Studio/LevyeForge/blob/main/LICENSE
+[product-screenshot]: images/screenshot.png
+[C++-shield]: https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=cplusplus&logoColor=white
+[C++-url]: https://isocpp.org/
