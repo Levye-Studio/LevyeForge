@@ -1,0 +1,33 @@
+#include "Renderer/Font.h"
+#include "lfpch.h"
+
+namespace LevyeForge {
+
+    Font::Font(const std::string& path, float pixelHeight) : m_Path(path) {
+        m_FontBuffer.resize(1 << 20); // 1 MB
+        std::ifstream file(path, std::ios::binary);
+        if (!file) {
+            LF_CORE_ERROR("Failed to open font file: {}", path);
+            return;
+        }
+
+        file.read(reinterpret_cast<char*>(m_FontBuffer.data()), m_FontBuffer.size());
+
+        if (file.gcount() < 12 || stbtt_GetFontOffsetForIndex(m_FontBuffer.data(), 0) < 0) {
+            LF_CORE_ERROR("Invalid font: {}", path);
+            return;
+        }
+        // Bake font
+        stbtt_BakeFontBitmap(m_FontBuffer.data(), 0, pixelHeight, m_RGBA, 512, 512, 32, 96, m_CharData);
+
+        // Convert grayscale to RGBA
+        std::vector<uint32_t> rgbaData(512 * 512);
+        for (int i = 0; i < 512 * 512; ++i) {
+            uint8_t alpha = m_RGBA[i];
+            rgbaData[i] = (alpha << 24) | (0xFFFFFF); // white with alpha
+        }
+        
+        m_Texture = Texture2D::Create(512, 512);
+        m_Texture->SetData(rgbaData.data(), rgbaData.size() * sizeof(uint32_t));
+    }
+}

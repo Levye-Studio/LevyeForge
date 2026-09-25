@@ -1,0 +1,70 @@
+#pragma once
+
+#include "Camera.h"
+#include "Core/Config.h"
+#include "EditorCamera.h"
+#include "Model.h"
+#include "Shader.h"
+// #include "Runtime/Components.h"
+#include "Renderer/Skybox.h"
+#include "Runtime/SceneCamera.h"
+#include "ozz/base/maths/simd_math.h"
+
+namespace LevyeForge {
+
+class Renderer3D {
+public:
+  static void Init();
+  static void Shutdown();
+
+  static void BeginCamera(const Camera &camera);
+  static void EndCamera();
+
+  static void RenderLight(const glm::vec3 &pos, const glm::vec4 &color);
+
+  static void DrawSkybox(const Ref<Skybox> skybox, const Camera &camera);
+
+  static void DrawModel(const Ref<Model> &model, const glm::mat4 &transform,
+                        const std::vector<ozz::math::Float4x4> *bones,
+                        int entityID);
+
+  static void
+  DrawSkeleton(const ozz::animation::Skeleton &skeleton,
+               const std::vector<ozz::math::Float4x4> &modelMatrices,
+               const glm::mat4 &modelTransform);
+
+  static void DrawCube(const glm::mat4 &transform,
+                       const glm::vec3 &color = glm::vec3(1),
+                       const float transparancy = 1.0f, int entityID = -1);
+  static void DrawCube(const glm::vec3 &position, const glm::vec3 &size,
+                       const glm::vec3 &color = glm::vec3(1),
+                       const float transparancy = 1.0f);
+  static void DrawSphere(const glm::mat4 &transform, const glm::vec3 &color,
+                         float transparancy = 1.0f, int entityID = -1);
+  static void DrawSphere(const glm::vec3 &position, const glm::vec3 &scale,
+                         const glm::vec3 &color = glm::vec3(1),
+                         float transparancy = 1.0f);
+  static void DrawSphere(const glm::vec3 &position, float radius,
+                         const glm::vec3 &color = glm::vec3(1),
+                         float transparancy = 1.0f, int entityID = -1);
+  static void SetEntity(int entityID);
+
+  static void DrawWireCube(const glm::mat4 &transform, const glm::vec3 &color,
+                           float transparency = 1.0f);
+  static void DrawWireCube(const glm::vec3 &position, const glm::vec3 &size,
+                           const glm::vec3 &color = glm::vec3(1),
+                           const float transparancy = 1.0f);
+  static void DrawWireSphere(const glm::vec3 &position, const glm::vec3 &scale,
+                             const glm::vec3 &color = glm::vec3(1),
+                             float transparancy = 1.0f);
+  static void DrawLine(const glm::vec3 &p0, const glm::vec3 &p1,
+                       const glm::vec4 &color);
+  static void DrawCameraFrustum(const SceneCamera &cam, const glm::mat4 &pose);
+
+  static Ref<Mesh> GetCubeMesh();
+
+  static Ref<Shader> &GetShader();
+
+private:
+};
+} // namespace LevyeForge

@@ -1,0 +1,84 @@
+#pragma once
+#include "Config.h"
+#include "UUID.h"
+#include "LF_Assert.h"
+#include "Scene.h"
+#include "Components.h"
+#include <entt.hpp>
+
+namespace LevyeForge {
+  
+  using EntityNull = entt::null_t;
+
+  class  Entity{
+  public:
+    Entity() = default;
+    Entity(entt::entity handle, Scene* scene);
+    Entity(const Entity& other) = default;
+
+    template <typename T, typename... Args>
+    T &AddComponent(Args &&...args) {
+      LF_CORE_ASSERT(m_EntityHandle != entt::null, "Entity handle is null!");
+      LF_CORE_ASSERT(!HasComponent<T>(), "Entity already has component!");
+      T& component = m_Scene->m_Registry.emplace<T>(m_EntityHandle, std::forward<Args>(args)...);
+      m_Scene->OnComponentAdded<T>(*this, component);
+      return component;
+    }
+
+    template<typename T, typename... Args>
+    T& AddOrReplaceComponent(Args&&... args)
+    {
+      if constexpr (std::is_same_v<T, NativeScriptComponent>)
+        m_Scene->DestroyScriptInstance(*this);
+      if constexpr (std::is_same_v<T, LuaScriptComponent>)
+        m_Scene->DestroyLuaScriptInstance(*this);
+      T& component = m_Scene->m_Registry.emplace_or_replace<T>(m_EntityHandle, std::forward<Args>(args)...);
+      m_Scene->OnComponentAdded<T>(*this, component);
+      return component;
+    }
+
+    template <typename T> T &GetComponent() {
+      LF_CORE_ASSERT(m_EntityHandle != entt::null, "Entity handle is null!");
+      LF_CORE_ASSERT(HasComponent<T>(), "Entity does not have component!");
+      return m_Scene->m_Registry.get<T>(m_EntityHandle);
+    }
+
+    template <typename T> bool HasComponent() {
+      LF_CORE_ASSERT(m_EntityHandle != entt::null, "Entity handle is null!");
+      return m_Scene->m_Registry.all_of<T>(m_EntityHandle);  
+    }
+
+    template<typename T>
+    void RemoveComponent()
+    {
+      LF_CORE_ASSERT(HasComponent<T>(), "Entity does not have component!");
+      if constexpr (std::is_same_v<T, NativeScriptComponent>)
+        m_Scene->DestroyScriptInstance(*this);
+      if constexpr (std::is_same_v<T, LuaScriptComponent>)
+        m_Scene->DestroyLuaScriptInstance(*this);
+      m_Scene->m_Registry.remove<T>(m_EntityHandle);
+    }
+
+    operator bool() const { return m_Scene && m_Scene->m_Registry.valid(m_EntityHandle); }
+    operator entt::entity() const { return m_EntityHandle; }
+    operator uint32_t() const { return (uint32_t)m_EntityHandle; }
+
+    glm::mat4 GetWorldTransform() const { return m_Scene->GetWorldTransform(m_EntityHandle); }
+    Scene *GetScene() const { return m_Scene; }
+    UUID GetUUID() { return GetComponent<IDComponent>().ID; }
+    const std::string& GetName() { return GetComponent<TagComponent>().Tag; }
+
+    bool operator==(const Entity& other) const
+    {
+      return m_EntityHandle == other.m_EntityHandle && m_Scene == other.m_Scene;
+    }
+
+    bool operator!=(const Entity& other) const
+    {
+      return !(*this == other);
+    }
+  private:
+    entt::entity m_EntityHandle{ entt::null };
+    Scene* m_Scene = nullptr;
+  };
+}

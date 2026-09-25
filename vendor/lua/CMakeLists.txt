@@ -1,0 +1,10 @@
+# Official Lua 5.4.9 sources; see doc/readme.html for the MIT license.
+file(GLOB LUA_SOURCES CONFIGURE_DEPENDS src/*.c)
+list(REMOVE_ITEM LUA_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/lua.c ${CMAKE_CURRENT_SOURCE_DIR}/src/luac.c)
+add_library(Lua STATIC ${LUA_SOURCES})
+target_include_directories(Lua PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src)
+set_target_properties(Lua PROPERTIES POSITION_INDEPENDENT_CODE ON)
+if(UNIX)
+  target_compile_definitions(Lua PRIVATE LUA_USE_POSIX)
+  target_link_libraries(Lua PUBLIC m)
+endif()

@@ -1,0 +1,545 @@
+Scene: Power the Beacon
+Entities:
+  - Entity: 9591920508588372109
+    Parent: 18438882050928012035
+    TagComponent:
+      Tag: Player
+    TransformComponent:
+      Translation: [0, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+  - Entity: 17162530506441287786
+    Parent: 18438882050928012035
+    TagComponent:
+      Tag: Lighting
+    TransformComponent:
+      Translation: [0, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+  - Entity: 12660439211800198442
+    Parent: 18223303832168106263
+    TagComponent:
+      Tag: Beacon Assembly
+    TransformComponent:
+      Translation: [0, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+  - Entity: 10415679066086736382
+    Parent: 18223303832168106263
+    TagComponent:
+      Tag: Energy Cells
+    TransformComponent:
+      Translation: [0, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+  - Entity: 18223303832168106263
+    Parent: 18438882050928012035
+    TagComponent:
+      Tag: Objectives
+    TransformComponent:
+      Translation: [0, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+  - Entity: 6131344274577739544
+    Parent: 3627810657200708325
+    TagComponent:
+      Tag: Path Markers
+    TransformComponent:
+      Translation: [0, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+  - Entity: 2148983161385451552
+    Parent: 3627810657200708325
+    TagComponent:
+      Tag: Platforms
+    TransformComponent:
+      Translation: [0, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+  - Entity: 16460482245253797642
+    Parent: 3627810657200708325
+    TagComponent:
+      Tag: Walls
+    TransformComponent:
+      Translation: [0, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+  - Entity: 3627810657200708325
+    Parent: 18438882050928012035
+    TagComponent:
+      Tag: Environment
+    TransformComponent:
+      Translation: [0, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+  - Entity: 18438882050928012035
+    TagComponent:
+      Tag: Power the Beacon
+    TransformComponent:
+      Translation: [0, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+  - Entity: 15435453418903136237
+    Parent: 16170242222831999003
+    TagComponent:
+      Tag: Man
+    TransformComponent:
+      Translation: [0, -0.920000017, 0]
+      Rotation: [3.1415925, -8.74227766e-08, 3.1415925]
+      Scale: [0.0900000036, 0.0900000036, 0.0900000036]
+    ModelComponent:
+      Model:
+        Path: Resources/Animations/Idle.fbx
+    AnimatorComponent:
+      Path: Resources/Animations/Idle.fbx
+      ClipIndex: 0
+      InPlaceJoint: mixamorig:Hips
+      Loop: true
+      Speed: 1
+      Playing: true
+      Time: 0
+  - Entity: 16170242222831999003
+    Parent: 9591920508588372109
+    TagComponent:
+      Tag: Player Body
+    TransformComponent:
+      Translation: [0, 0.970000029, 6]
+      Rotation: [0, -0, 0]
+      Scale: [1, 1, 1]
+    RigidbodyComponent:
+      Type: 1
+      Mass: 75
+      LinearVelocity: [0, 0, 0]
+      LinearDamping: 0
+      AngularDamping: 0.0500000007
+      UseGravity: true
+      LockRotation: true
+    BoxColliderComponent:
+      HalfSize: [0.330000013, 0.920000017, 0.330000013]
+      Friction: 0
+      Restitution: 0
+      ShowWireframe: false
+      IsTrigger: false
+    NativeScriptComponent:
+      Class: Playground Controller
+      Enabled: true
+  - Entity: 12171391836628973889
+    Parent: 9591920508588372109
+    TagComponent:
+      Tag: Playground Camera
+    TransformComponent:
+      Translation: [0, 5, 13]
+      Rotation: [-0.379999995, 0, 0]
+      Scale: [1, 1, 1]
+    CameraComponent:
+      Camera:
+        ProjectionType: 0
+        PerspectiveFOV: 0.959931076
+        PerspectiveNear: 0.100000001
+        PerspectiveFar: 100
+        OrthographicSize: 10
+        OrthographicNear: -1
+        OrthographicFar: 1
+      ShowFrustum: false
+      Primary: true
+      FixedAspectRatio: false
+  - Entity: 16135906431609692222
+    Parent: 17162530506441287786
+    TagComponent:
+      Tag: Courtyard Light
+    TransformComponent:
+      Translation: [-4, 12, 8]
+      Rotation: [0, -0, 0]
+      Scale: [1, 1, 1]
+    LightComponent:
+      Color: [1, 0.959999979, 0.879999995, 1]
+  - Entity: 9272178977574476087
+    Parent: 6131344274577739544
+    TagComponent:
+      Tag: Path Marker 7
+    TransformComponent:
+      Translation: [0, 0.0149999997, -2.70000029]
+      Rotation: [0, -0, 0]
+      Scale: [0.180000007, 0.0299999993, 0.5]
+    CubeComponent:
+      Color: [0.400000006, 0.649999976, 0.639999986]
+  - Entity: 4224875077905920648
+    Parent: 6131344274577739544
+    TagComponent:
+      Tag: Path Marker 6
+    TransformComponent:
+      Translation: [0, 0.0149999997, -1.60000014]
+      Rotation: [0, -0, 0]
+      Scale: [0.180000007, 0.0299999993, 0.5]
+    CubeComponent:
+      Color: [0.400000006, 0.649999976, 0.639999986]
+  - Entity: 3882157790910335537
+    Parent: 6131344274577739544
+    TagComponent:
+      Tag: Path Marker 5
+    TransformComponent:
+      Translation: [0, 0.0149999997, -0.500000119]
+      Rotation: [0, -0, 0]
+      Scale: [0.180000007, 0.0299999993, 0.5]
+    CubeComponent:
+      Color: [0.400000006, 0.649999976, 0.639999986]
+  - Entity: 3899356288500629941
+    Parent: 6131344274577739544
+    TagComponent:
+      Tag: Path Marker 4
+    TransformComponent:
+      Translation: [0, 0.0149999997, 0.599999905]
+      Rotation: [0, -0, 0]
+      Scale: [0.180000007, 0.0299999993, 0.5]
+    CubeComponent:
+      Color: [0.400000006, 0.649999976, 0.639999986]
+  - Entity: 10663187271554995375
+    Parent: 6131344274577739544
+    TagComponent:
+      Tag: Path Marker 3
+    TransformComponent:
+      Translation: [0, 0.0149999997, 1.69999993]
+      Rotation: [0, -0, 0]
+      Scale: [0.180000007, 0.0299999993, 0.5]
+    CubeComponent:
+      Color: [0.400000006, 0.649999976, 0.639999986]
+  - Entity: 4946973985933744970
+    Parent: 6131344274577739544
+    TagComponent:
+      Tag: Path Marker 2
+    TransformComponent:
+      Translation: [0, 0.0149999997, 2.79999995]
+      Rotation: [0, -0, 0]
+      Scale: [0.180000007, 0.0299999993, 0.5]
+    CubeComponent:
+      Color: [0.400000006, 0.649999976, 0.639999986]
+  - Entity: 7026604487542107991
+    Parent: 6131344274577739544
+    TagComponent:
+      Tag: Path Marker 1
+    TransformComponent:
+      Translation: [0, 0.0149999997, 3.9000001]
+      Rotation: [0, -0, 0]
+      Scale: [0.180000007, 0.0299999993, 0.5]
+    CubeComponent:
+      Color: [0.400000006, 0.649999976, 0.639999986]
+  - Entity: 13239591139580803342
+    Parent: 6131344274577739544
+    TagComponent:
+      Tag: Path Marker 0
+    TransformComponent:
+      Translation: [0, 0.0149999997, 5]
+      Rotation: [0, -0, 0]
+      Scale: [0.180000007, 0.0299999993, 0.5]
+    CubeComponent:
+      Color: [0.400000006, 0.649999976, 0.639999986]
+  - Entity: 2888804783728939686
+    Parent: 12660439211800198442
+    TagComponent:
+      Tag: Beacon
+    TransformComponent:
+      Translation: [0, 1.20000005, -15]
+      Rotation: [0, -0, 0]
+      Scale: [0.800000012, 1.79999995, 0.800000012]
+    CubeComponent:
+      Color: [0.699999988, 0.300000012, 0.150000006]
+  - Entity: 17133982518860035835
+    Parent: 12660439211800198442
+    TagComponent:
+      Tag: Beacon Base
+    TransformComponent:
+      Translation: [0, 0.150000006, -15]
+      Rotation: [0, -0, 0]
+      Scale: [3, 0.300000012, 3]
+    CubeComponent:
+      Color: [0.300000012, 0.349999994, 0.430000007]
+    RigidbodyComponent:
+      Type: 0
+      Mass: 1
+      LinearVelocity: [0, 0, 0]
+      LinearDamping: 0
+      AngularDamping: 0.0500000007
+      UseGravity: true
+      LockRotation: false
+    BoxColliderComponent:
+      HalfSize: [0.5, 0.5, 0.5]
+      Friction: 0.5
+      Restitution: 0
+      ShowWireframe: false
+      IsTrigger: false
+  - Entity: 7699856388119636417
+    Parent: 10415679066086736382
+    TagComponent:
+      Tag: Cell Plinth 3
+    TransformComponent:
+      Translation: [0, 2.3499999, -10]
+      Rotation: [0, -0, 0]
+      Scale: [0.800000012, 0.150000006, 0.800000012]
+    CubeComponent:
+      Color: [0.0599999987, 0.119999997, 0.170000002]
+  - Entity: 8853757627119902185
+    Parent: 10415679066086736382
+    TagComponent:
+      Tag: Energy Cell 3
+    TransformComponent:
+      Translation: [0, 2.8499999, -10]
+      Rotation: [0, -0, 0]
+      Scale: [0.449999988, 0.649999976, 0.449999988]
+    CubeComponent:
+      Color: [0.150000006, 0.949999988, 0.779999971]
+  - Entity: 4970867346441213604
+    Parent: 10415679066086736382
+    TagComponent:
+      Tag: Cell Plinth 2
+    TransformComponent:
+      Translation: [4, 1.45000005, -4]
+      Rotation: [0, -0, 0]
+      Scale: [0.800000012, 0.150000006, 0.800000012]
+    CubeComponent:
+      Color: [0.0599999987, 0.119999997, 0.170000002]
+  - Entity: 10522011170373505338
+    Parent: 10415679066086736382
+    TagComponent:
+      Tag: Energy Cell 2
+    TransformComponent:
+      Translation: [4, 1.95000005, -4]
+      Rotation: [0, -0, 0]
+      Scale: [0.449999988, 0.649999976, 0.449999988]
+    CubeComponent:
+      Color: [0.150000006, 0.949999988, 0.779999971]
+  - Entity: 8958814371591118427
+    Parent: 10415679066086736382
+    TagComponent:
+      Tag: Cell Plinth 1
+    TransformComponent:
+      Translation: [-4, 0.75, 0]
+      Rotation: [0, -0, 0]
+      Scale: [0.800000012, 0.150000006, 0.800000012]
+    CubeComponent:
+      Color: [0.0599999987, 0.119999997, 0.170000002]
+  - Entity: 3440095777889638337
+    Parent: 10415679066086736382
+    TagComponent:
+      Tag: Energy Cell 1
+    TransformComponent:
+      Translation: [-4, 1.25, 0]
+      Rotation: [0, -0, 0]
+      Scale: [0.449999988, 0.649999976, 0.449999988]
+    CubeComponent:
+      Color: [0.150000006, 0.949999988, 0.779999971]
+  - Entity: 15139764731044170377
+    Parent: 2148983161385451552
+    TagComponent:
+      Tag: Platform Three
+    TransformComponent:
+      Translation: [0, 1.10000002, -10]
+      Rotation: [0, -0, 0]
+      Scale: [3.5, 2.20000005, 3.5]
+    CubeComponent:
+      Color: [0.300000012, 0.349999994, 0.600000024]
+    RigidbodyComponent:
+      Type: 0
+      Mass: 1
+      LinearVelocity: [0, 0, 0]
+      LinearDamping: 0
+      AngularDamping: 0.0500000007
+      UseGravity: true
+      LockRotation: false
+    BoxColliderComponent:
+      HalfSize: [0.5, 0.5, 0.5]
+      Friction: 0.5
+      Restitution: 0
+      ShowWireframe: false
+      IsTrigger: false
+  - Entity: 904210148351531025
+    Parent: 2148983161385451552
+    TagComponent:
+      Tag: Step to Three
+    TransformComponent:
+      Translation: [0, 0.5, -7]
+      Rotation: [0, -0, 0]
+      Scale: [3, 1, 2.5]
+    CubeComponent:
+      Color: [0.219999999, 0.379999995, 0.540000021]
+    RigidbodyComponent:
+      Type: 0
+      Mass: 1
+      LinearVelocity: [0, 0, 0]
+      LinearDamping: 0
+      AngularDamping: 0.0500000007
+      UseGravity: true
+      LockRotation: false
+    BoxColliderComponent:
+      HalfSize: [0.5, 0.5, 0.5]
+      Friction: 0.5
+      Restitution: 0
+      ShowWireframe: false
+      IsTrigger: false
+  - Entity: 15689211608340312630
+    Parent: 2148983161385451552
+    TagComponent:
+      Tag: Platform Two
+    TransformComponent:
+      Translation: [4, 0.649999976, -4]
+      Rotation: [0, -0, 0]
+      Scale: [3.5, 1.29999995, 3.5]
+    CubeComponent:
+      Color: [0.150000006, 0.419999987, 0.589999974]
+    RigidbodyComponent:
+      Type: 0
+      Mass: 1
+      LinearVelocity: [0, 0, 0]
+      LinearDamping: 0
+      AngularDamping: 0.0500000007
+      UseGravity: true
+      LockRotation: false
+    BoxColliderComponent:
+      HalfSize: [0.5, 0.5, 0.5]
+      Friction: 0.5
+      Restitution: 0
+      ShowWireframe: false
+      IsTrigger: false
+  - Entity: 10660299456503604227
+    Parent: 2148983161385451552
+    TagComponent:
+      Tag: Platform One
+    TransformComponent:
+      Translation: [-4, 0.300000012, 0]
+      Rotation: [0, -0, 0]
+      Scale: [3.5, 0.600000024, 3.5]
+    CubeComponent:
+      Color: [0.119999997, 0.469999999, 0.550000012]
+    RigidbodyComponent:
+      Type: 0
+      Mass: 1
+      LinearVelocity: [0, 0, 0]
+      LinearDamping: 0
+      AngularDamping: 0.0500000007
+      UseGravity: true
+      LockRotation: false
+    BoxColliderComponent:
+      HalfSize: [0.5, 0.5, 0.5]
+      Friction: 0.5
+      Restitution: 0
+      ShowWireframe: false
+      IsTrigger: false
+  - Entity: 529786576128909637
+    Parent: 16460482245253797642
+    TagComponent:
+      Tag: South Wall
+    TransformComponent:
+      Translation: [0, 0.5, 10]
+      Rotation: [0, -0, 0]
+      Scale: [20, 1, 0.400000006]
+    CubeComponent:
+      Color: [0.280000001, 0.349999994, 0.430000007]
+    RigidbodyComponent:
+      Type: 0
+      Mass: 1
+      LinearVelocity: [0, 0, 0]
+      LinearDamping: 0
+      AngularDamping: 0.0500000007
+      UseGravity: true
+      LockRotation: false
+    BoxColliderComponent:
+      HalfSize: [0.5, 0.5, 0.5]
+      Friction: 0.5
+      Restitution: 0
+      ShowWireframe: false
+      IsTrigger: false
+  - Entity: 16297195283721884267
+    Parent: 16460482245253797642
+    TagComponent:
+      Tag: North Wall
+    TransformComponent:
+      Translation: [0, 0.5, -18]
+      Rotation: [0, -0, 0]
+      Scale: [20, 1, 0.400000006]
+    CubeComponent:
+      Color: [0.280000001, 0.349999994, 0.430000007]
+    RigidbodyComponent:
+      Type: 0
+      Mass: 1
+      LinearVelocity: [0, 0, 0]
+      LinearDamping: 0
+      AngularDamping: 0.0500000007
+      UseGravity: true
+      LockRotation: false
+    BoxColliderComponent:
+      HalfSize: [0.5, 0.5, 0.5]
+      Friction: 0.5
+      Restitution: 0
+      ShowWireframe: false
+      IsTrigger: false
+  - Entity: 11597988044540842451
+    Parent: 16460482245253797642
+    TagComponent:
+      Tag: East Wall
+    TransformComponent:
+      Translation: [10, 0.5, -4]
+      Rotation: [0, -0, 0]
+      Scale: [0.400000006, 1, 28]
+    CubeComponent:
+      Color: [0.280000001, 0.349999994, 0.430000007]
+    RigidbodyComponent:
+      Type: 0
+      Mass: 1
+      LinearVelocity: [0, 0, 0]
+      LinearDamping: 0
+      AngularDamping: 0.0500000007
+      UseGravity: true
+      LockRotation: false
+    BoxColliderComponent:
+      HalfSize: [0.5, 0.5, 0.5]
+      Friction: 0.5
+      Restitution: 0
+      ShowWireframe: false
+      IsTrigger: false
+  - Entity: 14648268638841160658
+    Parent: 16460482245253797642
+    TagComponent:
+      Tag: West Wall
+    TransformComponent:
+      Translation: [-10, 0.5, -4]
+      Rotation: [0, -0, 0]
+      Scale: [0.400000006, 1, 28]
+    CubeComponent:
+      Color: [0.280000001, 0.349999994, 0.430000007]
+    RigidbodyComponent:
+      Type: 0
+      Mass: 1
+      LinearVelocity: [0, 0, 0]
+      LinearDamping: 0
+      AngularDamping: 0.0500000007
+      UseGravity: true
+      LockRotation: false
+    BoxColliderComponent:
+      HalfSize: [0.5, 0.5, 0.5]
+      Friction: 0.5
+      Restitution: 0
+      ShowWireframe: false
+      IsTrigger: false
+  - Entity: 17616530833768589316
+    Parent: 3627810657200708325
+    TagComponent:
+      Tag: Courtyard
+    TransformComponent:
+      Translation: [0, -0.400000006, -4]
+      Rotation: [0, -0, 0]
+      Scale: [20, 0.800000012, 28]
+    CubeComponent:
+      Color: [0.159999996, 0.209999993, 0.270000011]
+    RigidbodyComponent:
+      Type: 0
+      Mass: 1
+      LinearVelocity: [0, 0, 0]
+      LinearDamping: 0
+      AngularDamping: 0.0500000007
+      UseGravity: true
+      LockRotation: false
+    BoxColliderComponent:
+      HalfSize: [0.5, 0.5, 0.5]
+      Friction: 0.5
+      Restitution: 0
+      ShowWireframe: false
+      IsTrigger: false

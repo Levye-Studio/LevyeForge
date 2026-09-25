@@ -1,0 +1,50 @@
+Targets/
+Build/
+build/
+.cache/
+
+.log
+
+compile_commands.json
+
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Local development and verification files
+/Tests/
+/.vscode/
+.DS_Store
+*.log
+/UEProfile-*.json
+imgui.ini
+/vendor/JoltPhysics.old/

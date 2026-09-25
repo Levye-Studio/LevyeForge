@@ -1,0 +1,7 @@
+add_library(MiniAudio STATIC miniaudio.c)
+target_include_directories(MiniAudio PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_compile_definitions(MiniAudio PUBLIC MA_NO_ENCODING MA_NO_DECODING MA_NO_RESOURCE_MANAGER MA_NO_NODE_GRAPH MA_NO_ENGINE)
+if(UNIX)
+  find_package(Threads REQUIRED)
+  target_link_libraries(MiniAudio PUBLIC Threads::Threads ${CMAKE_DL_LIBS} m)
+endif()
